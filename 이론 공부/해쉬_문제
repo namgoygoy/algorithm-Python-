@@ -1,0 +1,87 @@
+# 17219번 비밀번호 찾기
+
+https://www.acmicpc.net/problem/17219
+
+## 풀이 코드
+
+```python
+# 1. enumerate로 풀어보려고 시도
+# 2. input for문과 enumerate for문으로 시간복잡도가 O(n^2)인 것을 확인
+# 3. 딕셔너리로 시도
+
+import sys
+
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+
+password_dict = {}
+
+# 주소와 비밀번호를 딕셔너리에 저장
+for _ in range(N):
+    url, password = input().split()
+    password_dict[url] = password
+
+# M개의 비밀번호를 찾고 출력
+for _ in range(M):
+    want_url = input().strip()
+    print(password_dict[want_url])
+```
+
+# Set 자료구조
+
+## 1736번 듣보잡
+
+https://www.acmicpc.net/problem/1764
+
+### 풀이 코드
+
+```python
+import sys
+
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+
+# 듣도 못한 사람 set에 저장
+	
+never_heard = set()
+for _ in range(N):
+	never_heard.add(input().strip())
+
+# 보도 못한 사람 set에 저장
+
+never_seen = set()
+for _ in range(M):
+	never_seen.add(input().strip())
+
+## 파이썬 다운 코드
+# never_heard = {sys.stdin.readline().strip() for _ in range(N)}
+# never_seen = {sys.stdin.readline().strip() for _ in range(M)}
+
+result = []
+
+# 듣도 보도 못한 사람 result리스트에 저장
+
+for name in never_heard:
+	if name in never_seen:
+		result.append(name)
+		
+result.sort()
+
+## 파이썬 다운 코드
+# result = sorted(list(never_heard & never_seen))
+
+print(len(result))
+# print (*result)
+for name in result:
+	print(name)
+```
+
+!image.png
+
+## set vs List
+
+list는 데이터를 순차적으로 저장한다. 이 때문에 in 연산을 사용할 때 처음부터 끝까지 탐색 
+
+반면, set은 해시 함수를 이용해 원소의 위치를 바로 계산
