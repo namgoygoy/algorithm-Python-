@@ -1,3 +1,4 @@
+# 개사기 코드인 듯
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
         left = 0
